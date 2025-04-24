@@ -10,5 +10,6 @@ include(
     "ground-payment",
     "ground-profile",
     "ground-search",
-    "ground-space"
+    "ground-space",
+    "ground-core"
 )

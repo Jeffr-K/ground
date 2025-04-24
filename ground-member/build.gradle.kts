@@ -26,6 +26,8 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":ground-core"))
+
     testRuntimeOnly("com.h2database:h2")
 }
 
@@ -39,6 +41,11 @@ allOpen {
     annotation("jakarta.persistence.Entity")
     annotation("jakarta.persistence.MappedSuperclass")
     annotation("jakarta.persistence.Embeddable")
+}
+
+tasks.named("build") {
+    dependsOn(":ground-core:build")
+    mustRunAfter(":ground-core:build")
 }
 
 tasks.withType<Test> {

@@ -1,10 +1,10 @@
-package com.meshcraft.groundmember
+package com.meshcraft.groundcore
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
-@SpringBootTest(properties = ["spring.profiles.active=test"])
-class GroundMemberApplicationTests {
+@SpringBootTest
+class GroundCoreApplicationTests {
 
     @Test
     fun contextLoads() {

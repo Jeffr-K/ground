@@ -16,48 +16,50 @@ allprojects {
 }
 
 subprojects {
-    apply(plugin = "org.jetbrains.kotlin.jvm")
-    apply(plugin = "org.jetbrains.kotlin.plugin.spring")
-    apply(plugin = "org.jetbrains.kotlin.plugin.jpa")
-    apply(plugin = "org.springframework.boot")
-    apply(plugin = "io.spring.dependency-management")
+    if (project.name != "ground-core") {
+        apply(plugin = "org.jetbrains.kotlin.jvm")
+        apply(plugin = "org.jetbrains.kotlin.plugin.spring")
+        apply(plugin = "org.jetbrains.kotlin.plugin.jpa")
+        apply(plugin = "org.springframework.boot")
+        apply(plugin = "io.spring.dependency-management")
 
-    the<JavaPluginExtension>().apply {
-        toolchain {
-            languageVersion.set(JavaLanguageVersion.of(21))
+        the<JavaPluginExtension>().apply {
+            toolchain {
+                languageVersion.set(JavaLanguageVersion.of(21))
+            }
         }
-    }
 
-    dependencies {
-        "implementation"("org.springframework.boot:spring-boot-starter-data-jdbc")
-        "implementation"("org.springframework.boot:spring-boot-starter-data-jpa")
-        "implementation"("org.springframework.boot:spring-boot-starter-web")
-        "implementation"("com.fasterxml.jackson.module:jackson-module-kotlin")
-        "implementation"("org.jetbrains.kotlin:kotlin-reflect")
-        "developmentOnly"("org.springframework.boot:spring-boot-devtools")
-        "runtimeOnly"("com.mysql:mysql-connector-j")
-        "annotationProcessor"("org.springframework.boot:spring-boot-configuration-processor")
-        "testImplementation"("org.springframework.boot:spring-boot-starter-test")
-        "testImplementation"("org.jetbrains.kotlin:kotlin-test-junit5")
-        "testRuntimeOnly"("org.junit.platform:junit-platform-launcher")
-    }
-
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions {
-            freeCompilerArgs = listOf("-Xjsr305=strict")
-            jvmTarget = "21"
+        dependencies {
+            "implementation"("org.springframework.boot:spring-boot-starter-data-jdbc")
+            "implementation"("org.springframework.boot:spring-boot-starter-data-jpa")
+            "implementation"("org.springframework.boot:spring-boot-starter-web")
+            "implementation"("com.fasterxml.jackson.module:jackson-module-kotlin")
+            "implementation"("org.jetbrains.kotlin:kotlin-reflect")
+            "developmentOnly"("org.springframework.boot:spring-boot-devtools")
+            "runtimeOnly"("com.mysql:mysql-connector-j")
+            "annotationProcessor"("org.springframework.boot:spring-boot-configuration-processor")
+            "testImplementation"("org.springframework.boot:spring-boot-starter-test")
+            "testImplementation"("org.jetbrains.kotlin:kotlin-test-junit5")
+            "testRuntimeOnly"("org.junit.platform:junit-platform-launcher")
         }
-    }
 
-    tasks.withType<Test> {
-        useJUnitPlatform()
-    }
+        tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+            kotlinOptions {
+                freeCompilerArgs = listOf("-Xjsr305=strict")
+                jvmTarget = "21"
+            }
+        }
 
-    plugins.withId("org.jetbrains.kotlin.plugin.jpa") {
-        configure<org.jetbrains.kotlin.allopen.gradle.AllOpenExtension> {
-            annotation("jakarta.persistence.Entity")
-            annotation("jakarta.persistence.MappedSuperclass")
-            annotation("jakarta.persistence.Embeddable")
+        tasks.withType<Test> {
+            useJUnitPlatform()
+        }
+
+        plugins.withId("org.jetbrains.kotlin.plugin.jpa") {
+            configure<org.jetbrains.kotlin.allopen.gradle.AllOpenExtension> {
+                annotation("jakarta.persistence.Entity")
+                annotation("jakarta.persistence.MappedSuperclass")
+                annotation("jakarta.persistence.Embeddable")
+            }
         }
     }
 }
