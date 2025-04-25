@@ -1,6 +1,7 @@
 rootProject.name = "ground"
 
 include(
+    "ground-core",
     "ground-alarm",
     "ground-analytics",
     "ground-community",
@@ -11,5 +12,8 @@ include(
     "ground-profile",
     "ground-search",
     "ground-space",
-    "ground-core"
+    "ground-file",
+    "ground-connect",
+    "ground-batch",
+    "ground-point"
 )
