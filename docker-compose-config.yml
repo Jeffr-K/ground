@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+
+  config-server:
+    image: hyness/spring-cloud-config-server:4.0.4
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    environment:
+      SPRING_PROFILES_ACTIVE: native,vault
+      SPRING_CLOUD_CONFIG_SERVER_NATIVE_SEARCH_LOCATIONS: file:/config
+      SPRING_SECURITY_USER_NAME: configuser
+      SPRING_SECURITY_USER_PASSWORD: configpass
+
+      SPRING_CLOUD_CONFIG_SERVER_VAULT_HOST: vault
+      SPRING_CLOUD_CONFIG_SERVER_VAULT_PORT: 8200
+      SPRING_CLOUD_CONFIG_SERVER_VAULT_SCHEME: http
+      SPRING_CLOUD_CONFIG_SERVER_VAULT_TOKEN: root-token-12345
+
+      SPRING_CLOUD_BUS_ENABLED: "true"
+      SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS: kafka:29092
+      SPRING_CLOUD_BUS_DESTINATION: springCloudBus
+
+      SPRING_CLOUD_CONFIG_SERVER_GIT_URI: https://github.com/yourusername/config-repo
+      SPRING_CLOUD_CONFIG_SERVER_GIT_USERNAME: gituser
+      SPRING_CLOUD_CONFIG_SERVER_GIT_PASSWORD: gitpassword
+    volumes:
+      - ./config:/config
+    networks:
+      - config-network
+      - app-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://configuser:configpass@localhost:8888/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  config-ui:
+    image: lengleng/pig-config:3.7.0
+    container_name: config-ui
+    ports:
+      - "8889:8889"
+    environment:
+      CONFIG_SERVER_URL: http://config-server:8888
+      CONFIG_SERVER_USERNAME: configuser
+      CONFIG_SERVER_PASSWORD: configpass
+    networks:
+      - config-network
+    depends_on:
+      - config-server
+
+networks:
+  config-network:
+    driver: bridge
+  app-network:
+    external: true
