@@ -22,7 +22,7 @@ class ProfileQueryHandler(
         return profileQueryRepository.findAll(pageRequest)
     }
 
-    fun getProfile(memberId: Long): Profile {
+    fun getProfileBy(memberId: Long): Profile? {
         return profileQueryRepository.findByMemberId(memberId = memberId)
             ?: throw IllegalArgumentException("Profile not found for memberId: $memberId")
     }

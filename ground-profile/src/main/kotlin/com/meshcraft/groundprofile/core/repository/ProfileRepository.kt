@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository
 @Repository
 interface ProfileRepository : JpaRepository<Profile, Long> {
     fun findByMemberId(memberId: Long): Profile?
+    fun deleteProfileByMemberId(memberId: Long)
 }

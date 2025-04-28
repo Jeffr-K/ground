@@ -1,6 +1,8 @@
 package com.meshcraft.groundprofile.core.command
 
+import com.meshcraft.groundprofile.core.entity.Profile
 import com.meshcraft.groundprofile.core.repository.ProfileRepository
+import com.meshcraft.groundprofile.infrastructure.funcs.generateRandomNickname
 import com.meshcraft.groundprofile.interfaces.dto.ProfileEditRequestDto
 import org.springframework.stereotype.Service
 
@@ -8,6 +10,20 @@ import org.springframework.stereotype.Service
 class ProfileCommandHandler(
     private val profileRepository: ProfileRepository,
 ) {
+    fun createProfile(port: ProfileCreatePort) {
+        val profile = Profile.create(
+            nickname = generateRandomNickname(),
+            description = "자기소개를 변경해보세요.",
+            memberId = port.memberId,
+            gender = port.gender,
+        )
+
+        profileRepository.save(profile)
+    }
+
+    fun deleteProfile(port: ProfileDeletePort) {
+        profileRepository.deleteProfileByMemberId(memberId = port.memberId)
+    }
 
     // TODO: refactoring http to port
     fun editProfile(

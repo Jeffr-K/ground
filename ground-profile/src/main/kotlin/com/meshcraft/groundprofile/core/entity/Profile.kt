@@ -11,23 +11,23 @@ class Profile(
     @Column(nullable = false)
     var nickname: String,
     @Column(length = 500)
-    var description: String,
+    var description: String? = null,
     @Column(nullable = false)
-    var address: String,
+    var address: String? = null,
     @Convert(converter = StringListConverter::class)
     @Column(columnDefinition = "TEXT")
-    var interests: List<String>,
+    var interests: List<String>? = null,
     @Column(nullable = false, unique = true)
     val memberId: Long,
     @Column
-    var gender: String? = null,
-    @Column
+    var gender: String,
+    @Column(nullable = true)
     var company: String? = null,
-    @Column
+    @Column(nullable = true)
     var job: String? = null,
-    @Column
+    @Column(nullable = true)
     var region: String? = null,
-    @Column
+    @Column(nullable = true)
     var mbti: String? = null,
     @Column
     var isSmoker: Boolean? = null,
@@ -44,16 +44,36 @@ class Profile(
     companion object {
         fun create(
             nickname: String,
-            description: String,
-            address: String,
-            interests: List<String>,
-            memberId: Long
+            description: String? = null,
+            address: String? = null,
+            interests: List<String>? = null,
+            memberId: Long,
+            gender: String,
+            company: String? = null,
+            job: String? = null,
+            region: String? = null,
+            mbti: String? = null,
+            isSmoker: Boolean? = null,
+            isAlcohol: Boolean? = null,
+            height: Int? = null,
+            weight: Int? = null,
+            dateStyles: List<String>? = null
         ) = Profile(
-            nickname,
-            description,
-            address,
-            interests,
-            memberId
+            nickname = nickname,
+            description = description,
+            address = address,
+            interests = interests,
+            memberId = memberId,
+            gender = gender,
+            company = company,
+            job = job,
+            region = region,
+            mbti = mbti,
+            isSmoker = isSmoker,
+            isAlcohol = isAlcohol,
+            height = height,
+            weight = weight,
+            dateStyles = dateStyles
         )
     }
 
