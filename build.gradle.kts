@@ -37,6 +37,7 @@ subprojects {
             "implementation"("org.springframework.kafka:spring-kafka")
             "implementation"("org.jetbrains.kotlin:kotlin-reflect")
             "implementation"("org.springframework.boot:spring-boot-starter-validation")
+            "implementation"("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.15.2")
             "developmentOnly"("org.springframework.boot:spring-boot-devtools")
             "runtimeOnly"("com.mysql:mysql-connector-j")
             "annotationProcessor"("org.springframework.boot:spring-boot-configuration-processor")
