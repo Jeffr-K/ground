@@ -34,6 +34,7 @@ dependencies {
     api("com.fasterxml.jackson.module:jackson-module-kotlin")
 
     runtimeOnly("com.mysql:mysql-connector-j")
+    "implementation"("org.springframework.kafka:spring-kafka")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")

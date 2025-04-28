@@ -10,5 +10,19 @@ class Member(
     val email: String,
     val phone: String
 ) : EntitySpec() {
-
+    companion object {
+        fun create(
+            username: String,
+            password: String,
+            email: String,
+            phone: String
+        ): Member {
+            return Member(
+                username,
+                password,
+                email,
+                phone,
+            )
+        }
+    }
 }

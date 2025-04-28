@@ -23,5 +23,8 @@ abstract class EntitySpec(
 
     @LastModifiedDate
     @Column(nullable = false)
-    var updatedAt: LocalDateTime = LocalDateTime.now()
+    var updatedAt: LocalDateTime = LocalDateTime.now(),
+
+    @Column(nullable = true)
+    var deletedAt: LocalDateTime? = null
 )
