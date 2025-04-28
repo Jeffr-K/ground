@@ -1,5 +1,6 @@
 package com.meshcraft.groundprofile.interfaces.controller
 
+import com.meshcraft.groundprofile.core.command.ProfileCommandHandler
 import com.meshcraft.groundprofile.interfaces.dto.ProfileEditRequestDto
 import jakarta.validation.Valid
 import org.springframework.validation.annotation.Validated
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/profiles")
 @Validated
-class ProfileController {
+class ProfileController(
+    private val profileCommandHandler: ProfileCommandHandler
+) {
     @GetMapping
     fun profiles(
         @RequestParam(defaultValue = "0") page: Int,
@@ -28,10 +31,12 @@ class ProfileController {
         // @Valid exception: ConstraintViolationException
     }
 
-    @PatchMapping("/{profileId}")
+    @PatchMapping("/{memberId}")
     fun editProfile(
-        @PathVariable @Valid profileId: Long,
+        @PathVariable @Valid memberId: Long, // JWT 로 member 뜯어내고 멤버 Id 가 같은 profile 은 1:1 관계이니 그걸로 나중에 마이그레이션 하면 됌.
         @RequestBody @Valid profile: ProfileEditRequestDto
-    ) {}
+    ) {
+        profileCommandHandler.editProfile(memberId, profile)
+    }
 
 }
