@@ -42,6 +42,11 @@ subprojects {
             "runtimeOnly"("com.mysql:mysql-connector-j")
             "annotationProcessor"("org.springframework.boot:spring-boot-configuration-processor")
 
+            "implementation"("org.opensearch.client:opensearch-java:2.8.0")
+            "implementation"("org.opensearch.client:opensearch-rest-client:2.11.1")
+            "implementation"("com.fasterxml.jackson.core:jackson-databind")
+            "implementation"("org.springframework.boot:spring-boot-starter-data-elasticsearch")
+
 //            "implementation"("io.github.microutils:kotlin-logging-jvm:3.0.5")
 //            "implementation"("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
 //            "implementation"("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
