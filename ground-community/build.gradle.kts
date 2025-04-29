@@ -26,6 +26,7 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":ground-core"))
     testRuntimeOnly("com.h2database:h2")
 }
 
