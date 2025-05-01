@@ -1,4 +1,7 @@
 package com.meshcraft.groundcommunity.business
 
-class FeedQueryTest {
-}
+import io.kotest.core.spec.style.BehaviorSpec
+
+class FeedQueryTest : BehaviorSpec({
+
+})

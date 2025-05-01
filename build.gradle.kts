@@ -66,7 +66,6 @@ subprojects {
             "testImplementation"("org.testcontainers:junit-jupiter:1.19.6")
             "testImplementation"("org.testcontainers:mysql:1.19.6")
             "testImplementation"("org.testcontainers:kafka:1.19.6")
-//            "testImplementation"("org.springframework.boot:spring-boot-starter-test")
             "testImplementation"("org.springframework.boot:spring-boot-starter-test") {
                 exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
             }

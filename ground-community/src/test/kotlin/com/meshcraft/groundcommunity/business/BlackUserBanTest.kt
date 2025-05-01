@@ -1,4 +1,7 @@
 package com.meshcraft.groundcommunity.business
 
-class BlackUserBanTest {
-}
+import io.kotest.core.spec.style.BehaviorSpec
+
+class BlackUserBanTest : BehaviorSpec({
+
+})

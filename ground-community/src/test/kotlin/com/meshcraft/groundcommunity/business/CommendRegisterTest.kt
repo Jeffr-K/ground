@@ -1,4 +1,7 @@
 package com.meshcraft.groundcommunity.business
 
-class CommendRegisterTest {
-}
+import io.kotest.core.spec.style.BehaviorSpec
+
+class CommendRegisterTest : BehaviorSpec({
+
+})

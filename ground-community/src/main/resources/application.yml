@@ -1,9 +1,14 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/alarm_test?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    url: jdbc:tc:mysql:///ground_db
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
     username: root
     password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
+  #  datasource:
+#    url: jdbc:mysql://localhost:3306/ground_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+#    username: root
+#    password: root
+#    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: create-drop

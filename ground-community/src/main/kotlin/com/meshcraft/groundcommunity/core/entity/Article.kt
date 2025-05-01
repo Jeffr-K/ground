@@ -25,18 +25,22 @@ class Article(
     @ManyToMany(cascade = [CascadeType.PERSIST, CascadeType.MERGE])
     @JoinTable(
         name = "article_tags",
-        joinColumns = [JoinColumn(name = "article_id")],
-        inverseJoinColumns = [JoinColumn(name = "tag_id")]
+        joinColumns = [JoinColumn(name = "articleId")],
+        inverseJoinColumns = [JoinColumn(name = "tagId")]
     )
     val tags: MutableSet<Tag> = mutableSetOf(),
 
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "communityId")
-    val community: CommunityCategory,
+    val communityCategory: CommunityCategory,
 
     @OneToMany(mappedBy = "article", cascade = [CascadeType.ALL], orphanRemoval = true)
-    val attachments: MutableList<Attachment> = mutableListOf()
+    val attachments: MutableList<Attachment> = mutableListOf(),
+
+    @Column
+    val isPublic: Boolean = false,
+
 ) : EntitySpec() {
     companion object {
         fun create(
@@ -44,14 +48,18 @@ class Article(
             content: String,
             authorId: Long,
             isBanned: Boolean,
-            community: CommunityCategory
+            tags: MutableSet<Tag>,
+            isPublic: Boolean,
+            communityCategory: CommunityCategory
         ): Article {
             return Article(
                 title = title,
                 content = content,
                 authorId = authorId,
                 isBanned = isBanned,
-                community = community
+                isPublic = isPublic,
+                tags = tags,
+                communityCategory = communityCategory
             )
         }
     }

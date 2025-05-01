@@ -1,4 +1,7 @@
 package com.meshcraft.groundcommunity.business
 
-class CommentDeleteTest {
-}
+import io.kotest.core.spec.style.BehaviorSpec
+
+class CommentDeleteTest : BehaviorSpec({
+
+})

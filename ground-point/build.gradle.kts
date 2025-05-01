@@ -27,6 +27,10 @@ repositories {
 
 dependencies {
     implementation(project(":ground-core"))
+    testImplementation("org.testcontainers:testcontainers:1.21.0")
+    testImplementation("org.testcontainers:junit-jupiter:1.21.0")
+    testImplementation("org.testcontainers:mysql:1.19.6")
+    runtimeOnly("com.mysql:mysql-connector-j")
     testRuntimeOnly("com.h2database:h2")
 }
 

@@ -1,4 +1,7 @@
 package com.meshcraft.groundcommunity.business
 
-class CategoryQueryTest {
-}
+import io.kotest.core.spec.style.BehaviorSpec
+
+class CategoryQueryTest : BehaviorSpec({
+
+})

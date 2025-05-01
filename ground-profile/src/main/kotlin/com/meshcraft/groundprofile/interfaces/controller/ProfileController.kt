@@ -38,7 +38,7 @@ class ProfileController(
 
     @GetMapping("/me/members/{memberId}")
     fun profile(@PathVariable @Valid memberId: Long) {
-        profileQueryHandler.getProfile(memberId = memberId)
+        profileQueryHandler.getProfileBy(memberId = memberId)
     }
 
     @PatchMapping("/{memberId}")

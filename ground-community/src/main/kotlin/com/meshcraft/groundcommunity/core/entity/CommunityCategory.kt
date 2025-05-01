@@ -18,10 +18,13 @@ class CommunityCategory(
     val articles: MutableList<Article> = mutableListOf()
 ) : EntitySpec() {
     companion object {
-        fun create(): CommunityCategory {
+        fun create(
+            name: String,
+            type: String,
+        ): CommunityCategory {
             return CommunityCategory(
-                name = "Default Category",
-                type = "General"
+                name = name,
+                type = type
             )
         }
     }

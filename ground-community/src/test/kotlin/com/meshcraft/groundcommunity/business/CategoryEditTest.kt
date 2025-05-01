@@ -1,4 +1,7 @@
 package com.meshcraft.groundcommunity.business
 
-class CategoryEditTest {
-}
+import io.kotest.core.spec.style.BehaviorSpec
+
+class CategoryEditTest : BehaviorSpec({
+
+})
